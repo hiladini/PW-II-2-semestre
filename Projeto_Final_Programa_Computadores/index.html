@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Funcionários</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="topbar">
+      <div>
+        <h1>Gestão de Funcionários</h1>
+        <p>Cadastro e gerenciamento de funcionários</p>
+      </div>
+      <div class="top-actions">
+        <span id="userInfo"></span>
+        <button class="btn btn-light" id="logoutBtn">Sair</button>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Funcionários</h2>
+        <button class="btn" id="newEmployeeBtn">+ Novo funcionário</button>
+      </div>
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="Pesquisar por nome ou função">
+        <select id="statusFilter">
+          <option value="">Todos os status</option>
+          <option value="Ativo">Ativo</option>
+          <option value="Inativo">Inativo</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th><th>Função</th><th>Departamento</th>
+              <th>E-mail</th><th>Salário</th><th>Status</th><th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="employeesTable">
+            <tr><td colspan="7" class="empty">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Departamentos</h2>
+        <button class="btn" id="newDepartmentBtn">+ Novo departamento</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>Localização</th><th>Ações</th></tr></thead>
+          <tbody id="departmentsTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="employeeDialog">
+    <form id="employeeForm" class="dialog-form">
+      <h2 id="employeeDialogTitle">Novo funcionário</h2>
+      <input type="hidden" id="employeeId">
+      <label>Nome<input id="name" maxlength="100" required></label>
+      <label>Função<input id="role" maxlength="100" required></label>
+      <label>Salário (R$)<input id="salary" type="number" min="0" step="0.01" required></label>
+      <label>E-mail<input id="email" type="email" maxlength="150"></label>
+      <label>Data de admissão<input id="admissionDate" type="date"></label>
+      <label>Status
+        <select id="employeeStatus"><option>Ativo</option><option>Inativo</option></select>
+      </label>
+      <label>Departamento
+        <select id="departmentId"><option value="">Sem departamento</option></select>
+      </label>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-light" data-close="employeeDialog">Cancelar</button>
+        <button class="btn" type="submit">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="departmentDialog">
+    <form id="departmentForm" class="dialog-form">
+      <h2>Novo departamento</h2>
+      <label>Nome<input id="departmentName" maxlength="100" required></label>
+      <label>Localização<input id="departmentLocation" maxlength="100"></label>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-light" data-close="departmentDialog">Cancelar</button>
+        <button class="btn" type="submit">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
